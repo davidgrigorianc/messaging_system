@@ -1,7 +1,6 @@
 <?php
 
-author User
- */
+
 class Config {
     protected static $settings = array();
     

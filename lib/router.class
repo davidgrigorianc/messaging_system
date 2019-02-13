@@ -2,5 +2,27 @@
 
 
 class Router {
-    //put your code here
+    protected $url;
+
+    protected $controller;
+
+    protected $action;
+
+    protected $params;
+
+    public function getUri() {
+        return $this->controller;
+    }
+    
+    public function getController() {
+        return $this->controller;
+    }
+    
+    public function getParams() {
+        return $this->params;
+    }
+    
+    public function __construct($uri) {
+        var_dump('asfsaf'.$uri);
+    }
 }
