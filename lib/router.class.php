@@ -76,8 +76,7 @@ class Router {
                array_shift($path_parts);
            }
            // next - params
-           $this->params = $path_parts;
-           
+           $this->params = $path_parts;          
            
            
         }
