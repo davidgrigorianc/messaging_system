@@ -50,14 +50,12 @@ class Router {
         $this->controller =  Config::get('default_controller');
         $this->action =  Config::get('default_action');
        
-        $uri_parts = explode('?', $this->uri);
-       
+        $uri_parts = explode('?', $uri);
         $path = $uri_parts[0];
         
         $path_parts = explode('/', $path);
+        
         if(count($path_parts)){
-//           var_dump(current($path_parts));
-//           var_dump(array_keys($routes));
            
             // first element - route
            if(in_array(strtolower(current($path_parts)), array_keys($routes))){
@@ -76,7 +74,8 @@ class Router {
                array_shift($path_parts);
            }
            // next - params
-           $this->params = $path_parts;          
+           $this->params = $path_parts;
+           
            
            
         }

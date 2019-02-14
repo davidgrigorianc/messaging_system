@@ -2,7 +2,7 @@
 
 class Controller{
     
-    protected  $data;
+    protected $data;
     
     protected $model;
     

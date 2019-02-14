@@ -1,8 +1,7 @@
 <?php
 
-require_once(ROOT.DS.'config'.DS.'config.php');
 
-function __autoload($class_name){
+spl_autoload_register(function ($class_name) {
     $lib_path = ROOT.DS.'lib'.DS.strtolower($class_name).'.class.php';
     $controllers_path = ROOT.DS.'controllers'.DS. str_replace('controller', "", strtolower($class_name)).'.controller.php';
     $model_path = ROOT.DS.'models'.DS.strtolower($class_name).'.php';
@@ -17,4 +16,6 @@ function __autoload($class_name){
         throw new Exception('Failed to include class: '.$class_name);
     }
     
-}
+});
+require_once(ROOT.DS.'config'.DS.'config.php');
+

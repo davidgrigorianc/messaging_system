@@ -3,14 +3,14 @@
 class PagesController extends Controller{
     
     public function index() {
-        echo 'pagescontroller->index';
+        $this->data['test_content'] = 'pagescontroller->index';
     }
     
     public function view() {
         $params = App::getRouter()->getParams();
         if(isset($params[0])){
             $alias = strtolower($params[0]);
-            echo "we on page with '{$alias}' alias";
+            $this->data['content'] =  "we on page with '{$alias}' alias";
         }
         
         
