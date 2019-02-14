@@ -3,7 +3,7 @@
 require_once(ROOT.DS.'config'.DS.'config.php');
 
 function __autoload($class_name){
-    $lib_path = ROOT.DS.'lib'.DS.strtolower($class_name).'.class';
+    $lib_path = ROOT.DS.'lib'.DS.strtolower($class_name).'.class.php';
     $controllers_path = ROOT.DS.'controllers'.DS.strtolower($class_name).'.controller.php';
     $model_path = ROOT.DS.'models'.DS.strtolower($class_name).'.php';
     
