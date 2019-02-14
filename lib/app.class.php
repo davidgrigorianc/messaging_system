@@ -4,7 +4,7 @@ class App{
     protected static $router;
     
     public static function getRouter() {
-        self::$router;
+       return self::$router;
     }
            
     public static function run($uri) {
@@ -17,6 +17,8 @@ class App{
         $controller_object = new $controller_class();
         if(method_exists($controller_object, $controller_method)){
             $result = $controller_object->$controller_method();
+        }else{
+            throw new Exception('Method '.$controller_method.' of '.$controller_class.' is not exists');
         }
     }
 }
