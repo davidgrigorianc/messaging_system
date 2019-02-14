@@ -12,3 +12,9 @@ Config::set('default_route','default');
 Config::set('default_controller','pages');
 
 Config::set('default_action','index');
+
+Config::set('db_host', 'localhost');
+Config::set('db_user', 'root');
+Config::set('db_pass', '');
+Config::set('db_name', 'messaging_system');
+Config::set('db_char', 'utf8');
