@@ -14,6 +14,7 @@ class App{
         
         $controller_class = ucfirst(self::$router->getController())."Controller";
         $controller_method = strtolower(self::$router->getMethodPrefix().self::$router->getAction());
+        
         //calling controller method
         $controller_object = new $controller_class();
         if(method_exists($controller_object, $controller_method)){
@@ -21,7 +22,7 @@ class App{
             $view_object = new View($controller_object->getData(),$view_path);
             $content = $view_object->render();
         }else{
-            throw new Exception('Method '.$controller_method.' of '.$controller_class.' is not exists');
+            throw new Exception('Method '.$controller_method.' of '.$controller_class.' is not exists',404);
         }
         
         $layout = self::$router->getRoute();
