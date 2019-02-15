@@ -1,0 +1,50 @@
+
+<?php if(isset($data['messages'])){ ?>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<div class="container">
+       
+       
+        <div class="py-5 text-center">
+            <h1 class="jumbotron-heading">Messages</h1>
+            
+        </div>
+        <div class="row">
+<table id="datatables" border="1">
+    <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($data['messages'] as $key => $message) { ?>
+         <tr>
+            <th><?php echo $message->firstname ?></th>
+            <th><?php echo $message->lastname ?></th>
+            <th><?php echo $message->email ?></th>
+            <th><?php echo $message->message ?></th>
+            <th>
+                <a href="/admins/message/<?php echo $message->id ?>"><i class="fa fa-eye"></i></a>
+                <a href="/admins/delete/<?php echo $message->id ?>"><i class="fa fa-trash"></i></a>
+            </th>
+         </tr>
+       <?php } ?>
+
+    </tbody>
+</table>
+<?php }else{ ?>
+    <h1>No messages yet</h1>
+<?php } ?>
+        </div>
+    </div>
+    
+<script>
+$(document).ready(function() {
+    $('#datatables').DataTable();
+} );
+</script>
+
