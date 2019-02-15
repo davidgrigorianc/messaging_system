@@ -18,6 +18,7 @@
             <th>Lastname</th>
             <th>Email</th>
             <th>Message</th>
+            <th>Sending date</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -28,6 +29,7 @@
             <td><?php echo $message->lastname ?></td>
             <td><?php echo $message->email ?></td>
             <td><?php echo $message->message ?> <?php if(strlen($message->message) > 600 ) echo '..' ?></td>
+             <td><?php echo $message->created ?></td>
             <td>
                 <a href="/admins/message/<?php echo $message->id ?>"><i class="fa fa-eye"></i></a>
                 <a href="/admins/delete/<?php echo $message->id ?>" class="del"><i class="fa fa-trash"></i></a>
@@ -82,7 +84,9 @@
         <!--end error modal-->
         <script>
 $(document).ready(function() {
-    var table = $('#datatables').DataTable();
+    var table = $('#datatables').dataTable( {
+       
+      } );
     $('#datatables').show();
     $(document).on('click', 'a.del', function (e) {
         e.preventDefault();
