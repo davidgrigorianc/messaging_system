@@ -17,27 +17,56 @@ and open the template in the editor.
    
     </head>
     <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                <a class="navbar-brand" href="/"><?php echo Config::get('site_name') ?></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item <?php if(App::$data_action == '/PagesController/index'){ echo 'active'; } ?>">
+                    <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                  
+                </li>   
+                <?php  if(isset($_SESSION['admin'])){ ?>
+                <li class="nav-item <?php if(App::$data_action == '/AdminsController/messages'){ echo 'active'; } ?>">
+                   <a class="nav-link "  href="/admins/messages">List Messages <span class="sr-only"></span></a>
+                </li>
+                 <?php } ?>
+              </ul>
+              <form class="form-inline">
+                  <?php  if(isset($_SESSION['admin'])){ ?> 
+                  <span class="form-control mr-sm-2"><?php echo $_SESSION['admin']['login'];  ?></span>
+                      <a href="/admins/logout" class="btn btn-outline-primary my-2 my-sm-0">Logout</a>
+                  <?php }else if(App::$data_action != '/AdminsController/login'){ ?>
+                       <a href="/admins/login" class="btn btn-outline-primary my-2 my-sm-0">Login</a>
+                  <?php } ?>
+              </form>
+            </div>
+          </nav>
+        </header>  
          <?php 
             if(isset($_SESSION['message'])){ ?>
             <div class="py-5 text-center">
 
 
                     <?php if(isset($_SESSION['message']['success'])){ ?>
-                    <div id="success_message" style="width:100%; height:100%; ">
+                <div id="success_message" class="message" style="width:100%; height:100%; ">
                         <h3><?php echo $_SESSION['message']['success'] ?></h3>
                     </div>
                     <?php } ?>
                     <?php if(isset($_SESSION['message']['error'])){ ?>
-                    <div id="error_message" 
-                            style="width:100%; height:100%;">
-                                <h3>Error</h3>
-                                <?php echo $_SESSION['message']['error'] ?>
+                    <div id="error_message"  class="message" style="width:100%; height:100%;">
+                            <h3>Error</h3>
+                            <?php echo $_SESSION['message']['error'] ?>
                     </div> 
                     <?php } ?>
                     <?php unset($_SESSION['message']); ?>
             </div>
             <?php } ?>
       <?php echo $data['content']?>
-       
+        <script src="/js/hide_messages.js"></script>
     </body>
 </html>
