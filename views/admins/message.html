@@ -1,0 +1,50 @@
+    <?php $message = $data['message']; ?>
+    <div class="container">
+       
+       
+        <div class="py-5 text-center">
+            <h1 class="jumbotron-heading">Message # <?php echo $message->id ?>    </h1>
+            <p><a href="/admins/messages/">messages</a>/Message</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3" id="container">
+                    <div class="row">                      
+                        <div class="col-sm-6 offset-md-3">
+                            <p><b>Firstname:</b> <?php echo $message->firstname ?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 offset-md-3">
+                            <p><b>Lastname:</b> <?php echo $message->lastname ?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 offset-md-3">
+                            <p><b>Email:</b> <?php echo $message->email ?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 offset-md-3">
+                            <p><b>Sended:</b> <?php echo $message->created ?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 offset-md-3">
+                            <p><b>Message Text:</b> </p>
+                            <p>
+                                <?php echo $message->message ?>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                            <div class="col-sm-6 offset-md-3">
+                               <a href="/admins/messages" class="btn btn-primary">Back</a>
+                            </div>
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+      
+      

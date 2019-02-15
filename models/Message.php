@@ -27,4 +27,12 @@ class Message extends Model{
         $res = $stmt->execute($id);    
         return $stmt->fetch();
     }
+    
+     public function deleteById($data){
+        $db = static::getDB();
+        $stmt = $db->prepare("DELETE FROM messages WHERE id = :id");
+        $stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
+        $res = $stmt->execute();
+        return $res;
+    }
 }

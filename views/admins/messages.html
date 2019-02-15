@@ -9,8 +9,9 @@
             <h1 class="jumbotron-heading">Messages</h1>
             
         </div>
-        <div class="row">
-<table id="datatables" border="1">
+        <div class="row justify-content-center">
+            <!--start table-->
+    <table id="datatables" border="1" style="display:none;">
     <thead>
         <tr>
             <th>Firstname</th>
@@ -22,29 +23,97 @@
     </thead>
     <tbody>
         <?php foreach ($data['messages'] as $key => $message) { ?>
-         <tr>
-            <th><?php echo $message->firstname ?></th>
-            <th><?php echo $message->lastname ?></th>
-            <th><?php echo $message->email ?></th>
-            <th><?php echo $message->message ?></th>
-            <th>
+        <tr data-id="<?php echo $message->id ?>">
+            <td><?php echo $message->firstname ?></td>
+            <td><?php echo $message->lastname ?></td>
+            <td><?php echo $message->email ?></td>
+            <td><?php echo $message->message ?> <?php if(strlen($message->message) > 600 ) echo '..' ?></td>
+            <td>
                 <a href="/admins/message/<?php echo $message->id ?>"><i class="fa fa-eye"></i></a>
-                <a href="/admins/delete/<?php echo $message->id ?>"><i class="fa fa-trash"></i></a>
-            </th>
+                <a href="/admins/delete/<?php echo $message->id ?>" class="del"><i class="fa fa-trash"></i></a>
+            </td>
          </tr>
        <?php } ?>
 
     </tbody>
 </table>
+            <!--end table-->
 <?php }else{ ?>
     <h1>No messages yet</h1>
 <?php } ?>
         </div>
+           
     </div>
-    
-<script>
+   
+            <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Warning!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+               <h4> Are you sure you want to DELETE?</h4>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="btnDelete" data-id="" href="#">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!--end modal-->
+        <!--error modal-->
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="errormodal" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+               Could not delete message
+              </div>
+            </div>
+          </div>
+        <!--end error modal-->
+        <script>
 $(document).ready(function() {
-    $('#datatables').DataTable();
+    var table = $('#datatables').DataTable();
+    $('#datatables').show();
+    
+    $('a.del').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).closest('tr').data('id');
+        console.log(id);
+        $('#btnDelete').attr('data-id',id);
+        $('#myModal').modal('show');
+    });
+    $('button#btnDelete').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+         $.ajax({
+            type: "POST",
+            url: '/admins/deleteMessage',
+            data: {id:id},
+            success: function(data){
+               if(data == 'success'){
+                    var row = table.row( $('tr[data-id=' + id + ']') );
+                    row.remove().draw();                     
+               }else{
+                    $('#errormodal').modal('show');
+               }
+               $('#myModal').modal('hide');
+            }
+        });
+//        $(this).removeAttr('data-id');
+        
+    });
+    
+    
 } );
 </script>
 

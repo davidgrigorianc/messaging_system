@@ -8,7 +8,7 @@ class MessagesController extends Controller{
             $res =  Message::createNew($data);
             session_start();
             if($res){
-                $_SESSION['message']['success'] = 'Posted your message successfully!';
+                $_SESSION['message']['success'] = 'Thank you for submitting message';
             }else{
                 $_SESSION['message']['error'] = 'Sorry there was an error sending your form.';
             }
