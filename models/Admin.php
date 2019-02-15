@@ -11,8 +11,11 @@ class Admin extends Model {
         $this->db = Model::instance();
     }
 
-    public function find($id){        
-        $this->data = $this->db->run("SELECT * FROM admins WHERE id = ?", [$id])->fetch();
+    public function getByID($id){
+        $db = static::getDB();
+        $stmt = $db->prepare("SELECT login, password FROM admins WHERE id = ?");
+        $res = $stmt->execute([$id]);    
+        return $stmt->fetch();
     }
     
     // function to create admin
@@ -25,18 +28,30 @@ class Admin extends Model {
         return $res;
     }
     */
-    public function checkAdmin($login, $password){
-        $exists =  $this->db->run("SELECT login, password FROM admins WHERE login = ?",array($login))->fetch(); 
+    public function checkAdmin($data){
+        
+//        $exists =  $this->db->run("SELECT login, password FROM admins WHERE login = ?",array($data['login']))->fetch(); 
+        $db = static::getDB();
+        $stmt = $db->prepare("SELECT login, password FROM admins WHERE login = ?");
+        $res = $stmt->execute([$data['login']]);
+       
+        $exists = $stmt->fetch();
         // check if exists admin with that login, if not exists return message
         if(!$exists){
-//            $this->errors[] = 'No user with this login found';
-        }        
-        $hash = $exists->password;
-        if(password_verify($password,$hash)){
-            return true;
+            $data['success'] = false;
+            $data['message'] = 'no_user';
         }else{
-//             $this->errors[] = 'password is incorrect';
-        }       
+            $hash = $exists->password;
+            if(password_verify($data['password'],$hash)){
+                $data['success'] = true;
+                $data['login'] = $exists->login;                
+            }else{
+                $data['success'] = false;
+                $data['message'] = 'password_incorrect';
+            }     
+        }        
+        
+        return $data;
         
     }
     
