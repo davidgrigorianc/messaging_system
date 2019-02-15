@@ -1,3 +1,3 @@
 $(document).ready(function() {
-    setTimeout( function(){$('.message').hide();} , 4000);
+    setTimeout( function(){$('.message').hide();} , 700);
 });
