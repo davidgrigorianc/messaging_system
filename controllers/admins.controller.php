@@ -5,7 +5,7 @@ class AdminsController extends Controller{
           Router::redirect('/admins/login');
     }
     public function __construct(){
-        session_start();
+        parent::__construct();
         if(!isset($_SESSION['admin']) && $_SERVER['REQUEST_URI'] != '/admins/login' ){
             Router::redirect('/admins/login');
         }
@@ -39,12 +39,20 @@ class AdminsController extends Controller{
     public function message() {
         $id = App::getRouter()->getParams();
         $message = Message::getByID($id);
-        var_dump($message);die;
-        $this->data['messages'] = $messages;
+        $this->data['message'] = $message;
+    }
+    
+    public function deleteMessage() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $data = $_POST;
+            $res = Message::deleteById($data);
+            echo ($res) ? 'success' : 'fail';
+            exit();
+        }
     }
     
     public function logout() {
         session_destroy();
-        outer::redirect('/');
+        Router::redirect('/');
     }
 }
