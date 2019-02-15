@@ -15,6 +15,8 @@ abstract class Model
             $db = new PDO($dsn, Config::get('db_user'), Config::get('db_pass'));
             // Throw an Exception when an error occurs
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+            
         }
         return $db;
     }
