@@ -40,7 +40,6 @@ class Router {
     
     public function __construct($uri) {
         $this->uri = urldecode(trim($uri,'/'));
-       
 //       get defaults       
         $routes = Config::get('routes');  
         $this->route =  Config::get('default_route');
@@ -50,11 +49,9 @@ class Router {
         $this->controller =  Config::get('default_controller');
         $this->action =  Config::get('default_action');
        
-        $uri_parts = explode('?', $uri);
+        $uri_parts = explode('?', $this->uri);
         $path = $uri_parts[0];
-        
         $path_parts = explode('/', $path);
-        
         if(count($path_parts)){
            
             // first element - route
