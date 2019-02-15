@@ -20,8 +20,10 @@ class Controller{
         return $this->params;
     }
     
-    public function __constructcon($data = array()) {
+    public function __construct($data = array()) {
+         session_start();
         $this->data = $data;
+        $this->data['action'] = App::$data_action;
         $this->params = App::getRouter()->getParams();
     }
 }

@@ -2,7 +2,7 @@
 
 class App{
     protected static $router;
-    
+    public static $data_action;
     
     
     public static function getRouter() {
@@ -14,6 +14,7 @@ class App{
         
         $controller_class = ucfirst(self::$router->getController())."Controller";
         $controller_method = strtolower(self::$router->getMethodPrefix().self::$router->getAction());
+        self::$data_action = '/'.$controller_class.'/'.$controller_method;
         
         //calling controller method
         $controller_object = new $controller_class();
