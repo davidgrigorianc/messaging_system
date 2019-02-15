@@ -34,4 +34,11 @@ class View{
         $content = ob_get_clean();
         return $content;
     }
+    
+    public function renderTemplate($page) {
+        ob_start();
+        include(ROOT.DS.'views'.DS.$page);
+        $content = ob_get_clean();
+        echo  $content;
+    }
 }
