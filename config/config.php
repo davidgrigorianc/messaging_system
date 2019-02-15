@@ -4,7 +4,8 @@ Config::set('site_name','Messaging System');
 
 Config::set('routes',array(
     'default' => '',
-    'admin' => 'admin'
+//    'error' => 'error',
+//    'admin' => 'admin'
 ));
 
 Config::set('default_route','default');
@@ -18,3 +19,5 @@ Config::set('db_user', 'root');
 Config::set('db_pass', '');
 Config::set('db_name', 'messaging_system');
 Config::set('db_char', 'utf8');
+
+Config::set('debug', true);
