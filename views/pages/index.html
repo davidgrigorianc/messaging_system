@@ -1,4 +1,53 @@
+      
+    <div class="container">
+       
+       
+        <div class="py-5 text-center">
+            <h1 class="jumbotron-heading">Contact Us</h1>
+            <p class="lead text-muted">
+               Please send your message below. We will get back to you at the earliest!
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3" id="form_container">
+                <form role="form" method="post" id="form" method="POST" action="messages/create">
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label for="name">
+                                Firstname:</label>
+                            <input type="text" class="form-control" id="firstname" name="firstname" required>
+                        </div>
+                         <div class="col-sm-6 form-group">
+                            <label for="name">
+                                Lastname:</label>
+                            <input type="text" class="form-control" id="lastname" name="lastname" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="email">
+                                Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <label for="message">
+                                Message:</label>
+                            <textarea class="form-control" type="textarea" name="message" id="message" maxlength="6000" rows="7"></textarea>
+                        </div>
+                    </div>
+                    
 
-        <div>This is the pages->index.html</div>
-        <div><?php echo $data['test_content'] ?></div>
-   
+
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <button type="submit" class="btn btn-lg btn-default pull-right" >Send &rarr;</button>
+                        </div>
+                    </div>
+
+                </form>
+                
+            </div>
+        </div>
+    </div>
+      
+      
