@@ -84,15 +84,13 @@
 $(document).ready(function() {
     var table = $('#datatables').DataTable();
     $('#datatables').show();
-    
-    $('a.del').on('click', function (e) {
+    $(document).on('click', 'a.del', function (e) {
         e.preventDefault();
         var id = $(this).closest('tr').data('id');
-        console.log(id);
         $('#btnDelete').attr('data-id',id);
         $('#myModal').modal('show');
     });
-    $('button#btnDelete').on('click', function (e) {
+    $(document).on('click', 'button#btnDelete', function (e) {
         e.preventDefault();
         var id = $(this).attr('data-id');
          $.ajax({
@@ -112,8 +110,8 @@ $(document).ready(function() {
 //        $(this).removeAttr('data-id');
         
     });
-    
-    
 } );
+
+
 </script>
 
