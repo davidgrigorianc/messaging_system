@@ -20,4 +20,4 @@ Config::set('db_pass', '');
 Config::set('db_name', 'messaging_system');
 Config::set('db_char', 'utf8');
 
-Config::set('debug', true);
+Config::set('debug', false);
