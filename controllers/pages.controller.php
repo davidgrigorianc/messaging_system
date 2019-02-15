@@ -15,4 +15,12 @@ class PagesController extends Controller{
         
     }
     
+    public function adminindex() {
+        Router::redirect('/admin/pages/login');
+    }
+    
+    public function adminlogin() {
+//        Router::redirect('admin/login');
+    }
+    
 }

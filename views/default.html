@@ -9,8 +9,35 @@ and open the template in the editor.
         <title>Default</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+         <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+   
     </head>
     <body>
+         <?php 
+            if(isset($_SESSION['message'])){ ?>
+            <div class="py-5 text-center">
+
+
+                    <?php if(isset($_SESSION['message']['success'])){ ?>
+                    <div id="success_message" style="width:100%; height:100%; ">
+                        <h3><?php echo $_SESSION['message']['success'] ?></h3>
+                    </div>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['message']['error'])){ ?>
+                    <div id="error_message" 
+                            style="width:100%; height:100%;">
+                                <h3>Error</h3>
+                                <?php echo $_SESSION['message']['error'] ?>
+                    </div> 
+                    <?php } ?>
+                    <?php unset($_SESSION['message']); ?>
+            </div>
+            <?php } ?>
       <?php echo $data['content']?>
+       
     </body>
 </html>

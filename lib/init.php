@@ -13,9 +13,14 @@ spl_autoload_register(function ($class_name) {
     }elseif(file_exists($model_path)){
           require_once($model_path); 
     }else{
+        if(!file_exists($controllers_path)){
+            throw new Exception('Controller '.$class_name.' is not exists',404);
+        }
         throw new Exception('Failed to include class: '.$class_name);
     }
     
 });
 require_once(ROOT.DS.'config'.DS.'config.php');
+
+set_exception_handler('Myerror::exceptionHandler');
 
